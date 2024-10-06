@@ -1,0 +1,57 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Definición del tamaño de la matriz
+        Console.Write("Introduce el tamaño de la matriz : ");
+
+        int tamaño = int.Parse(Console.ReadLine()); // Tamaño de la matriz 
+        int[,] matriz = new int[tamaño, tamaño];
+
+        Random random = new Random(); // Instancia de Random para números aleatorios
+
+        // Llenado de la matriz
+
+        Console.WriteLine("Inicio de llenado de la matriz:");
+        for (int i = 0; i < tamaño; i++)
+        {
+            for (int j = 0; j < tamaño; j++)
+            {
+                matriz[i, j] = random.Next(1, 50); 
+            }
+        }
+
+        
+        Console.WriteLine("Matriz original:");
+        MostrarMatriz(matriz, tamaño);
+
+        // Intercambio 
+        for (int i = 0; i < tamaño; i++)
+        {
+            
+            int temp = matriz[i, i];   // diagonal principal
+            matriz[i, i] = matriz[i, tamaño - 1 - i]; // diagonal secundaria
+            matriz[i, tamaño - 1 - i] = temp; // valor  temporal
+        }
+
+        // matriz después del intercambio
+        Console.WriteLine("Matriz después de intercambiar diagonales:");
+        MostrarMatriz(matriz, tamaño);
+    }
+
+   
+    static void MostrarMatriz(int[,] matriz, int tamaño)
+    {
+        for (int i = 0; i < tamaño; i++)
+        {
+            for (int j = 0; j < tamaño; j++)
+            {
+                Console.Write(matriz[i, j] + "\t"); // Imprime el elemnto de la matriz
+            }
+            Console.WriteLine(); 
+        }
+    }
+}
+
