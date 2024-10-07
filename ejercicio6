@@ -1,0 +1,73 @@
+using System;
+using System.Collections.Generic; // Para usar listas dinámicas
+
+class Program
+{
+    static void Main()
+    {
+        // Pedimos al usuario que nos diga cuántos números quiere en el vector
+        Console.Write("Por favor, introduce el tamaño del vector (cantidad de números): ");
+        int tamaño = int.Parse(Console.ReadLine());
+
+        // Creamos un vector (array) donde vamos a guardar esos números
+        int[] vector = new int[tamaño];
+        Random random = new Random(); 
+
+        // Llenamos el vector con números aleatorios y le mostramos al usuario lo que está pasando
+        Console.WriteLine("\nLlenando el vector con números aleatorios:");
+        for (int i = 0; i < tamaño; i++)
+        {
+            vector[i] = random.Next(1, 101); 
+            Console.Write(vector[i] + " "); 
+        }
+
+        // Creamos dos listas: una para los números pares y otra para los impares
+        List<int> pares = new List<int>();
+        List<int> impares = new List<int>();
+
+        //  recorremos el vector original y separamos los números pares de los impares
+        for (int i = 0; i < tamaño; i++)
+        {
+            if (vector[i] % 2 == 0) 
+            {
+                pares.Add(vector[i]); 
+            }
+            else
+            {
+                impares.Add(vector[i]); // Si no, lo guardamos en la lista de impares
+            }
+        }
+
+        // Convertimos las listas en vectores (opcional, solo si necesitas que sean arrays)
+        int[] vectorPares = pares.ToArray();
+        int[] vectorImpares = impares.ToArray();
+
+        // Ahora mostramos los resultados: primero los números pares
+        Console.WriteLine("\n\nNúmeros pares:");
+        if (vectorPares.Length > 0) 
+        {
+            foreach (int num in vectorPares)
+            {
+                Console.Write(num + " "); // Mostramos cada número par
+            }
+        }
+        else
+        {
+            Console.WriteLine("No hay números pares."); 
+        }
+
+        // Y ahora mostramos los números impares
+        Console.WriteLine("\n\nNúmeros impares:");
+        if (vectorImpares.Length > 0) 
+        {
+            foreach (int num in vectorImpares)
+            {
+                Console.Write(num + " "); // Mostramos cada número impar
+            }
+        }
+        else
+        {
+            Console.WriteLine("No hay números impares."); // Si no hay impares, mostramos un mensaje
+        }
+    }
+}
